@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Operaciones Básicas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-field, .select-field {
+            width: calc(50% - 10px);
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .select-field {
+            width: calc(100% - 20px);
+        }
+        .boton {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 20px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .boton:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Operaciones Básicas</h1>
+        <input id="arg1" type="number" class="input-field" placeholder="Primer argumento">
+        <input id="arg2" type="number" class="input-field" placeholder="Segundo argumento">
+        <select id="operador" class="select-field">
+            <option value="add">Suma (+)</option>
+            <option value="subtract">Resta (-)</option>
+            <option value="multiply">Multiplicación (*)</option>
+            <option value="divide">División (/)</option>
+            <option value="and">AND</option>
+            <option value="or">OR</option>
+            <option value="xor">XOR</option>
+            <option value="not">NOT (solo usa el primer argumento)</option>
+        </select>
+        <button class="boton" onclick="calcular()">Calcular</button>
+        <div id="resultado">Resultado: </div>
+    </div>
+
+    <script>
+        function calcular() {
+            var arg1 = parseFloat(document.getElementById('arg1').value);
+            var arg2 = parseFloat(document.getElementById('arg2').value);
+            var operador = document.getElementById('operador').value;
+            var resultado;
+
+            if (isNaN(arg1) || (isNaN(arg2) && operador !== 'not')) {
+                resultado = 'Por favor, ingrese valores numéricos válidos.';
+            } else {
+                switch (operador) {
+                    case "add":
+                        resultado = arg1 + arg2;
+                        break;
+                    case "subtract":
+                        resultado = arg1 - arg2;
+                        break;
+                    case "multiply":
+                        resultado = arg1 * arg2;
+                        break;
+                    case "divide":
+                        resultado = arg1 / arg2;
+                        break;
+                    case "and":
+                        resultado = arg1 & arg2;
+                        break;
+                    case "or":
+                        resultado = arg1 | arg2;
+                        break;
+                    case "xor":
+                        resultado = arg1 ^ arg2;
+                        break;
+                    case "not":
+                        resultado = ~arg1;
+                        break;
+                    default:
+                        resultado = "Operación no válida";
+                }
+            }
+
+            document.getElementById('resultado').innerText = "Resultado: " + resultado;
+        }
+    </script>
+</body>
+</html>

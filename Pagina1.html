@@ -3,11 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina1</title>
-    <!--<link rel="stylesheet" href="styles.css">-->
+    <title>Modificar Texto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        #texto {
+            font-size: 18px;
+            color: black;
+            margin: 20px 0;
+        }
+        .boton {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .boton-tamaño {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+        }
+        .boton-tamaño:hover {
+            background-color: #45a049;
+        }
+        .boton-color {
+            background-color: #008CBA; /* Azul */
+            color: white;
+        }
+        .boton-color:hover {
+            background-color: #007BB5;
+        }
+        .color-rojo { background-color: red; }
+        .color-azul { background-color: blue; }
+        .color-negro { background-color: black; }
+        .color-verde { background-color: green; }
+        .color-naranja { background-color: orange; }
+        .color-morado { background-color: purple; }
+        .color-blanco { background-color: white; color: black; border: 1px solid black; }
+    </style>
 </head>
 <body>
-    <h1>Bienvenido a mi página</h1>
-    <p>Primera version.</p>
+    <h1>Modificar Texto</h1>
+    <p id="texto">Este es un texto que puede cambiar de tamaño y color.</p>
+    <div>
+        <button class="boton boton-tamaño" onclick="cambiarTamaño('aumentar')">Aumentar tamaño</button>
+        <button class="boton boton-tamaño" onclick="cambiarTamaño('disminuir')">Disminuir tamaño</button>
+    </div>
+    <div>
+        <button class="boton boton-color color-rojo" onclick="cambiarColor('red')">Rojo</button>
+        <button class="boton boton-color color-azul" onclick="cambiarColor('blue')">Azul</button>
+        <button class="boton boton-color color-negro" onclick="cambiarColor('black')">Negro</button>
+        <button class="boton boton-color color-verde" onclick="cambiarColor('green')">Verde</button>
+        <button class="boton boton-color color-naranja" onclick="cambiarColor('orange')">Naranja</button>
+        <button class="boton boton-color color-morado" onclick="cambiarColor('purple')">Morado</button>
+        <button class="boton boton-color color-blanco" onclick="cambiarColor('white')">Blanco</button>
+    </div>
+
+    <script>
+        function cambiarTamaño(accion) {
+            var texto = document.getElementById('texto');
+            var estilo = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            var tamañoActual = parseFloat(estilo);
+            if (accion === 'aumentar') {
+                texto.style.fontSize = (tamañoActual + 2) + 'px';
+            } else if (accion === 'disminuir') {
+                texto.style.fontSize = (tamañoActual - 2) + 'px';
+            }
+        }
+
+        function cambiarColor(color) {
+            var texto = document.getElementById('texto');
+            texto.style.color = color;
+        }
+    </script>
 </body>
 </html>
